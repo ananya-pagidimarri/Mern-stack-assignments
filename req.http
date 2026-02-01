@@ -1,0 +1,48 @@
+###
+GET http://localhost:4000/user-api/users
+###
+GET http://localhost:4000/user-api/users/697dbecbd45838c16972070b
+###
+POST http://localhost:4000/user-api/users
+Content-Type: application/json
+
+{
+    "username":"manasa",
+    "password":"manasa",
+    "age":21
+}
+###
+PUT http://localhost:4000/user-api/users/697dbecbd45838c16972070b
+Content-Type: application/json
+
+{
+    "username":"manasa",
+    "password":"manasa",
+    "age":21
+}
+###
+DELETE http://localhost:4000/user-api/users/697dbecbd45838c16972070b
+
+### CREATE PRODUCT
+POST http://localhost:4000/product-api/products
+Content-Type: application/json
+
+{
+  "pid": 101,
+  "productName": "Laptop",
+  "price": 55000
+}
+
+###
+GET http://localhost:4000/product-api/products
+
+###
+GET http://localhost:4000/product-api/products/697dd095fcdd0de520f893d0
+
+###
+PUT http://localhost:4000/product-api/products/697dd095fcdd0de520f893d0
+Content-Type: application/json
+
+{
+  "price": 60000
+}
