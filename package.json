@@ -1,0 +1,16 @@
+{
+  "name": "backend-demo",
+  "version": "1.0.0",
+  "description": "Backend demo project",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.0.0"
+  }
+}

@@ -1,0 +1,70 @@
+### USERS
+
+GET http://127.0.0.1:3000/users
+
+###
+
+GET http://127.0.0.1:3000/users/1
+
+###
+
+POST http://127.0.0.1:3000/users
+Content-Type: application/json
+
+{
+  "id": 3,
+  "name": "Sita",
+  "age": 21
+}
+
+###
+
+PUT http://127.0.0.1:3000/users/1
+Content-Type: application/json
+
+{
+  "age": 25
+}
+
+###
+
+DELETE http://127.0.0.1:3000/users/2
+
+#############################################
+
+### PRODUCTS
+
+GET http://127.0.0.1:3000/products
+
+###
+
+GET http://127.0.0.1:3000/products/101
+
+###
+
+GET http://127.0.0.1:3000/products/brand/HP
+
+###
+
+POST http://127.0.0.1:3000/products
+Content-Type: application/json
+
+{
+  "id": 201,
+  "name": "Tablet",
+  "price": 30000,
+  "brand": "Apple"
+}
+
+###
+
+PUT http://127.0.0.1:3000/products/201
+Content-Type: application/json
+
+{
+  "price": 35000
+}
+
+###
+
+DELETE http://127.0.0.1:3000/products/201
