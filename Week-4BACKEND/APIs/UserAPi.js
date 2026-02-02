@@ -1,12 +1,30 @@
 import exp from 'express'
 import {UserModel} from '../models/UserModel.js'
+import {hash,compare} from 'bcrpytjs'
+import jwt from 'jsonwebtoken';
 export const userApp=exp.Router()
 //create user
 userApp.post('/users', async (req, res) => {
     let newUser=req.body;
+    let hashedPassword=await hash(newUser.password,12)
+    new UserModel.password=hashedPassword;
     let newUserDoc= new UserModel(newUser)
     await newUserDoc.save()
     res.status(201).json({message:"User created"})
+});
+userApp.post('/auth', async (req, res) => {
+    let {username,password}=req.body;
+    let userOfDB=await UserModel.findOne({username:userCred.username})
+    if(userOfDB===null){
+        return res.status(404).json({message:"Invalid username"})
+    }
+    let status=await compare(userCred.password,userOfDB.password)
+    if(userOfDB===false){
+        return res.status(404).json({message:"Invalid password"})
+    }
+    //create signed token
+    let signedToken=jwt.sign({username:userCred.username},"abcdef",{expiresIn:30})
+    return res.status(404).json({message:"login Successful"})
 });
 //Read User
 userApp.get('/users', async (req, res) => {

@@ -46,3 +46,11 @@ Content-Type: application/json
 {
   "price": 60000
 }
+###User authentication(Login) req
+POST http;//localhost:40000/user-api/auth
+Content-Type: application/json
+
+{
+  "username":"bhanu"
+  "password":"bhanu"
+}
