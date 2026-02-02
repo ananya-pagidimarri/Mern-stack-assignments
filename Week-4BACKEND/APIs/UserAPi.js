@@ -5,13 +5,22 @@ import jwt from 'jsonwebtoken';
 export const userApp=exp.Router()
 //create user
 userApp.post('/users', async (req, res) => {
-    let newUser=req.body;
-    let hashedPassword=await hash(newUser.password,12)
-    new UserModel.password=hashedPassword;
-    let newUserDoc= new UserModel(newUser)
-    await newUserDoc.save()
-    res.status(201).json({message:"User created"})
+  let newUser = req.body;
+
+  // hash password
+  let hashedPassword = await bcrypt.hash(newUser.password, 6);
+
+  // create document
+  let newUserDoc = new UserModel(newUser);
+
+  // assign hashed password
+  newUserDoc.password = hashedPassword;
+
+  await newUserDoc.save();
+
+  res.status(201).json({ message: "User created" });
 });
+
 userApp.post('/auth', async (req, res) => {
     let {username,password}=req.body;
     let userOfDB=await UserModel.findOne({username:userCred.username})
