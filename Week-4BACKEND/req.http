@@ -1,28 +1,42 @@
-###
+### GET ALL USERS
 GET http://localhost:4000/user-api/users
+
+
 ###
+### GET USER BY ID
 GET http://localhost:4000/user-api/users/697dbecbd45838c16972070b
+
+
 ###
+### CREATE USER (SIGNUP) 
 POST http://localhost:4000/user-api/users
 Content-Type: application/json
 
 {
-    "username":"manasa",
-    "password":"manasa",
-    "age":21
+  "username": "manasa",
+  "password": "manasa",
+  "age": 21
 }
+
+
 ###
+### UPDATE USER
 PUT http://localhost:4000/user-api/users/697dbecbd45838c16972070b
 Content-Type: application/json
 
 {
-    "username":"manasa",
-    "password":"manasa",
-    "age":21
+  "username": "manasa",
+  "password": "manasa",
+  "age": 21
 }
+
+
 ###
+### DELETE USER
 DELETE http://localhost:4000/user-api/users/697dbecbd45838c16972070b
 
+
+###
 ### CREATE PRODUCT
 POST http://localhost:4000/product-api/products
 Content-Type: application/json
@@ -33,24 +47,36 @@ Content-Type: application/json
   "price": 55000
 }
 
+
 ###
+### GET ALL PRODUCTS
 GET http://localhost:4000/product-api/products
 
-###
-GET http://localhost:4000/product-api/products/697dd095fcdd0de520f893d0
 
 ###
+### GET PRODUCT BY ID
+GET http://localhost:4000/product-api/products/697dd095fcdd0de520f893d0
+
+
+###
+### UPDATE PRODUCT
 PUT http://localhost:4000/product-api/products/697dd095fcdd0de520f893d0
 Content-Type: application/json
 
 {
   "price": 60000
 }
-###User authentication(Login) req
-POST http;//localhost:40000/user-api/auth
+
+
+###
+### USER AUTHENTICATION (LOGIN)
+POST http://localhost:4000/user-api/auth
 Content-Type: application/json
 
 {
-  "username":"bhanu"
-  "password":"bhanu"
+  "username": "manasa",
+  "password": "manasa"
 }
+### Request for protected route
+GET http://localhost:4000/user-api/test
+Authorization: 

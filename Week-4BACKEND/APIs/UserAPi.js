@@ -1,14 +1,15 @@
 import exp from 'express'
 import {UserModel} from '../models/UserModel.js'
-import {hash,compare} from 'bcryptjs'
+import {hash,compare} from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import { verifyToken } from "../middlewares/verifyToken.js";
 export const userApp=exp.Router()
 //create user
 userApp.post('/users', async (req, res) => {
   let newUser = req.body;
 
   // hash password
-  let hashedPassword = await bcrypt.hash(newUser.password, 6);
+  let hashedPassword = await hash(newUser.password, 6);
 
   // create document
   let newUserDoc = new UserModel(newUser);
@@ -22,19 +23,36 @@ userApp.post('/users', async (req, res) => {
 });
 
 userApp.post('/auth', async (req, res) => {
-    let {username,password}=req.body;
-    let userOfDB=await UserModel.findOne({username:userCred.username})
-    if(userOfDB===null){
-        return res.status(404).json({message:"Invalid username"})
-    }
-    let status=await compare(userCred.password,userOfDB.password)
-    if(userOfDB===false){
-        return res.status(404).json({message:"Invalid password"})
-    }
-    //create signed token
-    let signedToken=jwt.sign({username:userCred.username},"abcdef",{expiresIn:30})
-    return res.status(404).json({message:"login Successful"})
+  let { username, password } = req.body;
+
+  let userOfDB = await UserModel.findOne({ username });
+  if (userOfDB === null) {
+    return res.status(404).json({ message: "Invalid username" });
+  }
+
+  let status = await compare(password, userOfDB.password);
+  if (status === false) {
+    return res.status(401).json({ message: "Invalid password" });
+  }
+
+  let signedToken = jwt.sign(
+    { username: userOfDB.username },
+    "abcdef",
+    { expiresIn: "30m" }
+  );
+
+  res.cookie('token', signedToken, {
+    httpOnly: true,
+    secure: false,
+    sameSite: "lax"
+  });
+
+  return res.status(200).json({
+    message: "login successful",
+    token: signedToken
+  });
 });
+
 //Read User
 userApp.get('/users', async (req, res) => {
     let users = await UserModel.find()
@@ -66,4 +84,9 @@ userApp.delete("/users/:id",async(req,res)=>{
     //delete user by id
     await UserModel.findByIdAndDelete(objId)
     res.status(200).json({message:"user removed"});
+});
+//test route(protected route)
+userApp.get('/test', verifyToken, async (req, res) => {
+  let users = await UserModel.find();
+  res.json(users);
 });
