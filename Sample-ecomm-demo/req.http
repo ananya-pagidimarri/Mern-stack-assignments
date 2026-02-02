@@ -1,9 +1,8 @@
-### GET USER BY ID
+### 
 GET http://localhost:4000/products/product
 
 
 ###
-### CREATE USER (SIGNUP) 
 POST http://localhost:4000/products/add
 Content-Type: application/json
 
