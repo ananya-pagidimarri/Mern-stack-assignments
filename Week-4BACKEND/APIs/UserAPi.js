@@ -1,6 +1,6 @@
 import exp from 'express'
 import {UserModel} from '../models/UserModel.js'
-import {hash,compare} from 'bcrpytjs'
+import {hash,compare} from 'bcryptjs'
 import jwt from 'jsonwebtoken';
 export const userApp=exp.Router()
 //create user
