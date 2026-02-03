@@ -1,11 +1,16 @@
 import { Schema,model } from "mongoose";
 //create cart schema
 const cartSchema=new Schema({
-    product:{
-        type:Schema.Types.ObjectId,
-        ref:"product", //name of product model
+       product: {
+        type: Schema.Types.ObjectId,
+        ref: "product",
         required: true
-    }
+      },
+
+      quantity: {
+        type: Number,
+        default: 1
+      }
 });
 //create user schema (username,password,age)
 const userSchema= new Schema({
@@ -18,7 +23,7 @@ const userSchema= new Schema({
     email:{
         type:String,
         required:[true,"email is required"],
-        unique:true
+        unique:[true,"dup user"]
         
     },
     password:{

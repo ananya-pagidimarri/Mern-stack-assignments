@@ -17,9 +17,18 @@ POST http://localhost:4000/users/register
 Content-Type: application/json
 
 {
-    "username":"ananya",
-    "email":"ananya@gmail.com",
-    "password":"123456"
+    "username":"ravi",
+    "email":"ravi@gmail.com",
+    "password":"ravi",
+    "cart":[]
 }
 ###Req to cart
-PUT  http://localhost:4000/users/user-cart/userid/69816e9fc888ee7012cac916/product/6980a19100c6b96d2234d57a
+PUT  http://localhost:4000/users/user-cart/userid/69817f620eb006e4a819f38f/product/6980a19100c6b96d2234d57a
+###
+
+PUT http://localhost:4000/users/user-cart/69817f620eb006e4a819f38f/6980a19100c6b96d2234d57a
+
+###
+GET http://localhost:4000/users/users/69816e9fc888ee7012cac916
+###
+GET http://localhost:4000/users/users/69816e9fc888ee7012cac916
