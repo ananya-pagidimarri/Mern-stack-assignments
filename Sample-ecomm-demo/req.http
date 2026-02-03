@@ -22,4 +22,4 @@ Content-Type: application/json
     "password":"123456"
 }
 ###Req to cart
-PUT  http://localhost:4000/users/user-cart/userid/6980a16c00c6b96d2234d577/product/6980a19100c6b96d2234d57a
+PUT  http://localhost:4000/users/user-cart/userid/69816e9fc888ee7012cac916/product/6980a19100c6b96d2234d57a
