@@ -13,9 +13,9 @@ app.use("/products", productRoute)
 
 async function connectionDB(){
     try{
-        await connect("mongodb://localhost:27017/ecom")
-        console.log("Connected to go")
-        app.listen(port,()=>console.log("server listening on port 4000..."))
+        await connect("mongodb://localhost:27017/ecom");
+        console.log("Connected to go");
+        app.listen(port,()=>console.log("server listening on port 4000..."));
     }catch(err){
         console.log(err)
     }

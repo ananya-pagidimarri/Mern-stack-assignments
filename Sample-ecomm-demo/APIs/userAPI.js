@@ -112,20 +112,27 @@ userRoute.get("/users/:uid", async (req, res) => {
   let userObj=await UserModel.findById(uid).populate("cart.product","productName price")
   res.status(200).json({message:"user",payload: userObj});
 })
-userRoute.get("/compare/:pid",async(req,res)=>{
-  //get products
-  let productId=new Types.ObjectId(req.params.pid);
-  let prObj = await UserModel.findById(objId)
-  //compareids
-  if(productId==prod._id){
-    console.log("Equal")
-    }else{
-      console.log("Not equal")
-    }
-    //if(prod._id.equals(productId)){
-      //console.log("eq")
-    //}else{
-      //console.log("nq")
+userRoute.get("/compare/:uid/:pid", async (req, res) => {
+  try {
+    const { uid, pid } = req.params;
 
-    //}
+    const productId = new Types.ObjectId(pid);
+    const user = await UserModel.findById(uid).populate("cart.product");
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const exists = user.cart.some(item =>
+      item.product._id.equals(productId)
+    );
+
+    res.json({
+      exists,
+      message: exists ? "Product already in cart" : "Product not in cart"
+    });
+
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
