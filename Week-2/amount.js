@@ -1,18 +1,19 @@
-let total=0
-function add(a)
-{
-    let a=500
-    return a
+let total = 0;
+
+function add(a) {
+    return a;
 }
-function addToTotal(b)
-{
-        let b=1200
-        return b
+
+function addToTotal(b) {
+    return b;
 }
-function dis(c)
-{
-    let c=18%ountotal
-    return c
+
+function dis(totalAmount) {
+    let discount = totalAmount * 18 / 100;  // 18% discount
+    return discount;
 }
-total=add(500)+addToTotal(1200)-dis(18%ountotal)
-console.log(total)
+
+total = add(500) + addToTotal(1200);
+total = total - dis(total);
+
+console.log(total);
