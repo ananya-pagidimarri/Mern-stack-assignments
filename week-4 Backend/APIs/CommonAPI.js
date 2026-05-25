@@ -23,7 +23,8 @@ commonRoute.post("/login", async (req, res) => {
         // Send response
         res.status(200).json({
             message: "Login successful",
-            payload: user
+            payload: user,
+            token: token // for testing
         });
 
     } catch (err) {
@@ -89,4 +90,8 @@ commonRoute.put("/change-password", verifyToken, async (req, res) => {
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
+});
+//page refresh
+commonRoute.get("/check-auth", verifyToken("USER","AUTHOR","ADMIN"), (req, res) => {
+    res.status(200).json({ message: "authenticated", payload: req.user });
 });

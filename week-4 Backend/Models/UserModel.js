@@ -34,7 +34,7 @@ const userSchema = new Schema(
   },
   {
     timestamps: true,
-    strict: "throw",
+    strict: false,
     versionKey: false,
   },
 );

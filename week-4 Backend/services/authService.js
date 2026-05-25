@@ -6,6 +6,11 @@ config()
 
 //register function
 export const register = async (userObj) => {
+  if (!userObj.password || userObj.password.trim() === "") {
+    const err = new Error("Password is required");
+    err.status = 400;
+    throw err;
+  }
   //Create document
   const userDoc = new UserTypeModel(userObj);
   //validate for emprty passwords

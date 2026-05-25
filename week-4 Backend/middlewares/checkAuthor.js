@@ -17,6 +17,10 @@ export const checkAuthor = async (req, res, next) => {
   if(!author.isActive){
      return res.status(403).json({ message: "Author account is not active" });
   }
+  //check if the logged-in user is the author
+  if (aid !== req.user.userId) {
+    return res.status(403).json({ message: "Forbidden" });
+  }
   //forward req to next
   next();
 };
