@@ -76,7 +76,8 @@ const payroll = employees.map(e => ({
 // Running mathematical accumulations on data tracks
 const grandTotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
 
-```
+``` 
+
 
 ### Advanced Conditional Reduction
 
